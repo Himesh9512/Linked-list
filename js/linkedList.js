@@ -35,10 +35,10 @@ const linkedList = () => {
 	};
 
 	// return the total size of list
-	const size = () => (!length ? "Empty List" : length);
+	const size = () => (!length ? "Empty List" : `size: ${length}`);
 
 	// return the first node of list
-	const head = () => (!HEAD ? "Empty List" : HEAD.value);
+	const head = () => (!HEAD ? "Empty List" : `HEAD: ${HEAD.value}`);
 
 	// return the last node of list
 	const tail = () => {
@@ -49,7 +49,7 @@ const linkedList = () => {
 			while (pointer.nextNode !== null) {
 				pointer = pointer.nextNode;
 			}
-			return pointer.value;
+			return `TAIL: ${pointer.value}`;
 		}
 	};
 
@@ -70,6 +70,8 @@ const linkedList = () => {
 	const pop = () => {
 		if (!HEAD) {
 			return "Empty List";
+		} else if (HEAD.nextNode === null) {
+			HEAD = null;
 		} else {
 			let pointer = HEAD;
 			while (pointer.nextNode.nextNode !== null) {
@@ -77,12 +79,25 @@ const linkedList = () => {
 			}
 			pointer.nextNode = null;
 			length--;
-			return "POP!";
 		}
+		return "POP!";
 	};
 
 	// return true if the passed in value is in the list and otherwise returns false
-	const contains = (value) => {};
+	const contains = (value) => {
+		console.log(HEAD);
+		if (!HEAD) {
+			return "Empty List";
+		} else {
+			let pointer = HEAD;
+			while (pointer.nextNode !== null) {
+				if (pointer.value == value) return true;
+				pointer = pointer.nextNode;
+			}
+			if (pointer.value == value) return true;
+			return false;
+		}
+	};
 
 	// return the index of the node containing value, or null if not found
 	const find = (value) => {};
@@ -106,10 +121,12 @@ const linkedList = () => {
 
 let list = linkedList();
 console.log(list.append(1));
+console.log(list.append(5));
+console.log(list.append(7));
 console.log(list.prepend(4));
 console.log(list.head());
-console.log(list.prepend(5));
-console.log(list.head());
+console.log(list.tail());
 console.log(list.size());
 console.log(list.pop());
 console.log(list.size());
+console.log(list.contains(5));
