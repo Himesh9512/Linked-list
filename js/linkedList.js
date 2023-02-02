@@ -100,7 +100,24 @@ const linkedList = () => {
 	};
 
 	// return the index of the node containing value, or null if not found
-	const find = (value) => {};
+	const find = (value) => {
+		if (!HEAD) {
+			return "Empty List";
+		} else {
+			let index = 1;
+			let pointer = HEAD;
+			while (pointer.nextNode !== null) {
+				if (pointer.value == value) {
+					return index;
+				} else {
+					pointer = pointer.nextNode;
+					index++;
+				}
+			}
+			if (pointer.value == value) return index;
+			return null;
+		}
+	};
 
 	// represents your LinkedList objects as strings, so you can print them out and preview them in the console
 	// e.g.  ( value ) -> ( value ) -> ( value ) -> null
@@ -130,3 +147,4 @@ console.log(list.size());
 console.log(list.pop());
 console.log(list.size());
 console.log(list.contains(5));
+console.log(list.find(5));
