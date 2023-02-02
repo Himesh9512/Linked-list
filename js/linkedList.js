@@ -72,6 +72,12 @@ const linkedList = () => {
 			return "Empty List";
 		} else {
 			let pointer = HEAD;
+			while (pointer.nextNode.nextNode !== null) {
+				pointer = pointer.nextNode;
+			}
+			pointer.nextNode = null;
+			length--;
+			return "POP!";
 		}
 	};
 
@@ -104,4 +110,6 @@ console.log(list.prepend(4));
 console.log(list.head());
 console.log(list.prepend(5));
 console.log(list.head());
+console.log(list.size());
+console.log(list.pop());
 console.log(list.size());
