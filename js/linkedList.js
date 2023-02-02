@@ -85,7 +85,6 @@ const linkedList = () => {
 
 	// return true if the passed in value is in the list and otherwise returns false
 	const contains = (value) => {
-		console.log(HEAD);
 		if (!HEAD) {
 			return "Empty List";
 		} else {
@@ -121,7 +120,20 @@ const linkedList = () => {
 
 	// represents your LinkedList objects as strings, so you can print them out and preview them in the console
 	// e.g.  ( value ) -> ( value ) -> ( value ) -> null
-	const toString = () => {};
+	const toString = () => {
+		let string = "";
+		if (!HEAD) {
+			return "Empty List";
+		} else {
+			let pointer = HEAD;
+			while (pointer.nextNode !== null) {
+				string += `(${pointer.value}) -> `;
+				pointer = pointer.nextNode;
+			}
+			string += `(${pointer.value}) -> NULL`;
+		}
+		return string;
+	};
 	return {
 		append,
 		prepend,
@@ -148,3 +160,4 @@ console.log(list.pop());
 console.log(list.size());
 console.log(list.contains(5));
 console.log(list.find(5));
+console.log(list.toString());
