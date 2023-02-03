@@ -3,6 +3,7 @@ import Node from "./node.js";
 const linkedList = () => {
 	let HEAD = null;
 	let length = 0;
+	let ERROR = "Empty List!";
 
 	// adds a new node at end of linked list
 	const append = (value) => {
@@ -35,15 +36,15 @@ const linkedList = () => {
 	};
 
 	// return the total size of list
-	const size = () => (!length ? "Empty List" : `size: ${length}`);
+	const size = () => (!length ? ERROR : `size: ${length}`);
 
 	// return the first node of list
-	const head = () => (!HEAD ? "Empty List" : `HEAD: ${HEAD.value}`);
+	const head = () => (!HEAD ? ERROR : `HEAD: ${HEAD.value}`);
 
 	// return the last node of list
 	const tail = () => {
 		if (!HEAD) {
-			return "Empty List";
+			return ERROR;
 		} else {
 			let pointer = HEAD;
 			while (pointer.nextNode !== null) {
@@ -56,7 +57,7 @@ const linkedList = () => {
 	// return the node at specific index of list
 	const at = (index) => {
 		if (!HEAD) {
-			return "Empty List";
+			return ERROR;
 		} else {
 			let pointer = HEAD;
 			for (let i = 1; i < index; i++) {
@@ -69,7 +70,7 @@ const linkedList = () => {
 	// remove the last element from list
 	const pop = () => {
 		if (!HEAD) {
-			return "Empty List";
+			return ERROR;
 		} else if (HEAD.nextNode === null) {
 			HEAD = null;
 		} else {
@@ -86,7 +87,7 @@ const linkedList = () => {
 	// return true if the passed in value is in the list and otherwise returns false
 	const contains = (value) => {
 		if (!HEAD) {
-			return "Empty List";
+			return ERROR;
 		} else {
 			let pointer = HEAD;
 			while (pointer.nextNode !== null) {
@@ -101,7 +102,7 @@ const linkedList = () => {
 	// return the index of the node containing value, or null if not found
 	const find = (value) => {
 		if (!HEAD) {
-			return "Empty List";
+			return ERROR;
 		} else {
 			let index = 1;
 			let pointer = HEAD;
@@ -123,7 +124,7 @@ const linkedList = () => {
 	const toString = () => {
 		let string = "";
 		if (!HEAD) {
-			return "Empty List";
+			return ERROR;
 		} else {
 			let pointer = HEAD;
 			while (pointer.nextNode !== null) {
@@ -134,6 +135,23 @@ const linkedList = () => {
 		}
 		return string;
 	};
+
+	// inserts a new node with provided value at given index
+	const insertAt = (value, index) => {
+		let newNode = Node(value);
+		if (!HEAD) return ERROR;
+		if (index > length) return "Index does not exist!";
+		let pointer = HEAD;
+		for (let i = 1; i < index - 1; i++) {
+			pointer = pointer.nextNode;
+		}
+		let next = pointer.nextNode;
+		pointer.nextNode = newNode;
+		newNode.nextNode = next;
+		length++;
+		return `INSERT ${value} AT ${index}`;
+	};
+
 	return {
 		append,
 		prepend,
@@ -145,6 +163,7 @@ const linkedList = () => {
 		contains,
 		find,
 		toString,
+		insertAt,
 	};
 };
 
@@ -152,6 +171,9 @@ let list = linkedList();
 console.log(list.append(1));
 console.log(list.append(5));
 console.log(list.append(7));
+console.log(list.append(13));
+console.log(list.append(65));
+console.log(list.append(12));
 console.log(list.prepend(4));
 console.log(list.head());
 console.log(list.tail());
@@ -161,3 +183,4 @@ console.log(list.size());
 console.log(list.contains(5));
 console.log(list.find(5));
 console.log(list.toString());
+console.log(list.insertAt(9, 4));
