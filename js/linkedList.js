@@ -152,6 +152,18 @@ const linkedList = () => {
 		return `INSERT ${value} AT ${index}`;
 	};
 
+	// remove a node at given index
+	const removeAt = (index) => {
+		if (!HEAD) return ERROR;
+		if (index > length) return "Index does not exist!";
+		let pointer = HEAD;
+		for (let i = 0; i < index - 1; i++) {
+			pointer = pointer.nextNode;
+		}
+		pointer.nextNode = pointer.nextNode.nextNode;
+		length--;
+		return `REMOVE NODE AT ${index}`;
+	};
 	return {
 		append,
 		prepend,
@@ -164,6 +176,7 @@ const linkedList = () => {
 		find,
 		toString,
 		insertAt,
+		removeAt,
 	};
 };
 
@@ -184,3 +197,4 @@ console.log(list.contains(5));
 console.log(list.find(5));
 console.log(list.toString());
 console.log(list.insertAt(9, 4));
+console.log(list.removeAt(4));
