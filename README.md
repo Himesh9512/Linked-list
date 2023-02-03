@@ -2,7 +2,7 @@
 
 This is my solution for a LinkedList project I received from [The Odin Project](https://www.theodinproject.com) course. You can check out LinkedList project at [here](https://www.theodinproject.com/lessons/javascript-linked-lists).
 
-### Assigment
+## Assigment:
 
 ##### LinkedList
 
@@ -23,13 +23,13 @@ This is my solution for a LinkedList project I received from [The Odin Project](
 - ```insertAt(value, index)``` that inserts a new node with the provided value at the given index.
 - ```removeAt(index)``` that removes the node at the given index.
 
-### how to run programs
+## how to run programs:
 
 execute the following command in terminal:
 ```
 node <filename> 
 ```
 
-### Tech Stack:
+## Tech Stack:
 
 - vanilla Javascript
